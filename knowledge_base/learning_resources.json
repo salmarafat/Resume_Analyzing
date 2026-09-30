@@ -1,0 +1,74 @@
+[
+  {
+    "category": "Certifications",
+    "name": "AWS Certified Solutions Architect - Associate",
+    "provider": "Amazon Web Services (AWS)",
+    "target_skills": ["AWS", "Cloud Architecture", "Networking", "Security", "DevOps"],
+    "level": "Intermediate",
+    "url": "https://aws.amazon.com/certification/certified-solutions-architect-associate/",
+    "description": "Validates ability to design and implement distributed systems on AWS, covering VPC, EC2, S3, IAM, and high-availability patterns."
+  },
+  {
+    "category": "Certifications",
+    "name": "Certified Kubernetes Administrator (CKA)",
+    "provider": "Cloud Native Computing Foundation (CNCF)",
+    "target_skills": ["Kubernetes", "Docker", "DevOps", "Linux", "Containerization"],
+    "level": "Intermediate to Advanced",
+    "url": "https://www.cncf.io/certification/cka/",
+    "description": "Hands-on, performance-based exam testing skills in Kubernetes installation, configuration, networking, pod security, and troubleshooting."
+  },
+  {
+    "category": "Certifications",
+    "name": "TensorFlow Developer Certificate / Deep Learning Specialization",
+    "provider": "DeepLearning.AI / Coursera",
+    "target_skills": ["Machine Learning", "Deep Learning", "TensorFlow", "PyTorch", "Python"],
+    "level": "Intermediate",
+    "url": "https://www.deeplearning.ai/program/deep-learning-specialization/",
+    "description": "Foundational deep learning curriculum covering CNNs, RNNs, transformers, optimization algorithms, and practical ML strategy."
+  },
+  {
+    "category": "Certifications",
+    "name": "Meta Back-End Developer Professional Certificate",
+    "provider": "Meta / Coursera",
+    "target_skills": ["Python", "FastAPI", "SQL", "Git", "REST APIs", "Web Development"],
+    "level": "Beginner to Intermediate",
+    "url": "https://www.coursera.org/professional-certificates/meta-back-end-developer",
+    "description": "Comprehensive program teaching backend development, relational database design, APIs, and version control."
+  },
+  {
+    "category": "Courses & Tutorials",
+    "name": "FastAPI Official Documentation & Tutorial",
+    "provider": "Tiangolo / FastAPI",
+    "target_skills": ["FastAPI", "Python", "REST APIs", "Asyncio", "Pydantic"],
+    "level": "Beginner to Advanced",
+    "url": "https://fastapi.tiangolo.com/tutorial/",
+    "description": "The gold-standard interactive tutorial on building production APIs, path parameters, dependency injection, and security with FastAPI."
+  },
+  {
+    "category": "Courses & Tutorials",
+    "name": "CS50's Introduction to Computer Science & Web Programming",
+    "provider": "Harvard University / edX",
+    "target_skills": ["Computer Science", "Algorithms", "Python", "SQL", "JavaScript", "HTML5", "CSS3"],
+    "level": "Beginner",
+    "url": "https://cs50.harvard.edu/",
+    "description": "Rigorous introduction to computational thinking, data structures, memory management, and modern web application development."
+  },
+  {
+    "category": "Courses & Tutorials",
+    "name": "Docker & Kubernetes: The Practical Guide",
+    "provider": "Academind / Udemy",
+    "target_skills": ["Docker", "Kubernetes", "DevOps", "Microservices"],
+    "level": "Beginner to Intermediate",
+    "url": "https://academind.com/",
+    "description": "Hands-on guide covering Dockerfiles, multi-container deployments, persistent volumes, Kubernetes pods, services, and ingress."
+  },
+  {
+    "category": "Courses & Tutorials",
+    "name": "Hugging Face NLP Course & LLM Agent Guide",
+    "provider": "Hugging Face",
+    "target_skills": ["NLP", "Transformers", "RAG", "Python", "PyTorch", "AI Agents"],
+    "level": "Intermediate to Advanced",
+    "url": "https://huggingface.co/learn/nlp-course",
+    "description": "Comprehensive guide to working with transformer architectures, tokenizers, fine-tuning language models, and building semantic RAG systems."
+  }
+]

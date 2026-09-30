@@ -1,0 +1,106 @@
+[
+  {
+    "name": "Python",
+    "category": "Programming Languages",
+    "type": "technical",
+    "description": "High-level programming language emphasizing code readability, versatility for backend development, data science, automation, and AI.",
+    "synonyms": ["Python3", "Py"],
+    "benchmarks": "Decorators, generators, asyncio, OOP, type hinting, packaging."
+  },
+  {
+    "name": "FastAPI",
+    "category": "Backend Frameworks",
+    "type": "technical",
+    "description": "Modern, high-performance web framework for building APIs with Python 3.8+ based on standard Python type hints and Starlette/Pydantic.",
+    "synonyms": ["FastAPI Framework"],
+    "benchmarks": "Dependency injection, Pydantic validation, async/await handlers, OpenAPI specs, background tasks."
+  },
+  {
+    "name": "JavaScript",
+    "category": "Frontend & Web",
+    "type": "technical",
+    "description": "Core web programming language for interactive client-side browser logic and asynchronous network interactions.",
+    "synonyms": ["JS", "ES6+", "Vanilla JS"],
+    "benchmarks": "ES6+ syntax, Promises/async-await, DOM manipulation, Fetch API, event loop, closures."
+  },
+  {
+    "name": "HTML5 & CSS3",
+    "category": "Frontend & Web",
+    "type": "technical",
+    "description": "Semantic markup and styling foundations for building responsive, accessible, cross-browser web interfaces.",
+    "synonyms": ["HTML", "CSS", "Responsive Design", "Flexbox", "Grid"],
+    "benchmarks": "Semantic tags, Flexbox, CSS Grid, media queries, CSS custom properties, WCAG compliance."
+  },
+  {
+    "name": "SQL & Relational Databases",
+    "category": "Databases",
+    "type": "technical",
+    "description": "Structured Query Language for modeling, querying, indexing, and optimizing relational databases like SQLite and PostgreSQL.",
+    "synonyms": ["SQLite", "PostgreSQL", "MySQL", "RDBMS", "Relational Modeling"],
+    "benchmarks": "Complex joins, indexing strategies, transactions (ACID), schema migrations, query optimization."
+  },
+  {
+    "name": "Docker",
+    "category": "DevOps & Cloud",
+    "type": "technical",
+    "description": "Platform for developing, shipping, and running applications in lightweight, isolated containers.",
+    "synonyms": ["Containerization", "Docker Compose", "Dockerfile"],
+    "benchmarks": "Multi-stage builds, container networking, volume mounting, compose orchestration, image optimization."
+  },
+  {
+    "name": "Machine Learning",
+    "category": "AI & Data Science",
+    "type": "technical",
+    "description": "Algorithms and statistical models that computer systems use to perform tasks without explicit instructions.",
+    "synonyms": ["ML", "Supervised Learning", "Unsupervised Learning", "Scikit-Learn"],
+    "benchmarks": "Classification, regression, cross-validation, feature engineering, hyperparameter tuning, model evaluation (ROC-AUC, F1)."
+  },
+  {
+    "name": "Retrieval-Augmented Generation (RAG)",
+    "category": "AI & Data Science",
+    "type": "technical",
+    "description": "Architectural pattern combining semantic vector search and information retrieval with generative language models for grounded, factual answers.",
+    "synonyms": ["RAG", "Vector Search", "Semantic Retrieval", "Embeddings"],
+    "benchmarks": "Document chunking, dense embeddings, vector indexing, cosine similarity, prompt augmentation, reranking."
+  },
+  {
+    "name": "Git & Version Control",
+    "category": "Developer Tools",
+    "type": "technical",
+    "description": "Distributed version control system for tracking changes in source code during software development.",
+    "synonyms": ["Git", "GitHub", "GitLab", "Branching Strategies"],
+    "benchmarks": "Branching, rebasing, merge conflict resolution, interactive rebase, pull requests, semantic commit messages."
+  },
+  {
+    "name": "RESTful API Design",
+    "category": "Software Architecture",
+    "type": "technical",
+    "description": "Architectural style for designing networked applications leveraging standard HTTP methods, status codes, and JSON serialization.",
+    "synonyms": ["REST", "REST APIs", "OpenAPI", "JSON API"],
+    "benchmarks": "Statelessness, resource naming conventions, idempotent operations, pagination, rate limiting, error responses."
+  },
+  {
+    "name": "Problem Solving",
+    "category": "Soft Skills",
+    "type": "soft",
+    "description": "Ability to identify complex problems, deconstruct root causes, evaluate trade-offs, and implement effective technical solutions.",
+    "synonyms": ["Analytical Thinking", "Critical Thinking", "Troubleshooting"],
+    "benchmarks": "Algorithmic thinking, debugging complex bugs, root cause analysis (RCA), trade-off evaluation."
+  },
+  {
+    "name": "Communication & Collaboration",
+    "category": "Soft Skills",
+    "type": "soft",
+    "description": "Clear verbal and written articulation of architectural concepts, documentation writing, and empathetic teamwork.",
+    "synonyms": ["Teamwork", "Cross-Functional Collaboration", "Technical Writing"],
+    "benchmarks": "Code review etiquette, design doc authoring, communicating technical debt to non-technical partners."
+  },
+  {
+    "name": "Adaptability & Continuous Learning",
+    "category": "Soft Skills",
+    "type": "soft",
+    "description": "Agility in embracing new technologies, adjusting to evolving project requirements, and self-directed skill acquisition.",
+    "synonyms": ["Growth Mindset", "Agility", "Self-Taught"],
+    "benchmarks": "Quick ramp-up on new tools, willingness to experiment, incorporating feedback constructively."
+  }
+]

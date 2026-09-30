@@ -1,0 +1,44 @@
+[
+  {
+    "category": "ATS Optimization",
+    "rule": "Use Clean, Standard Section Headings",
+    "importance": "High",
+    "guideline": "Applicant Tracking Systems (ATS) rely on standard heading titles to parse your resume accurately. Avoid fancy graphics or non-standard headers.",
+    "recommendation": "Use unambiguous headings: 'Professional Experience' or 'Work Experience', 'Education', 'Technical Skills', 'Projects', and 'Certifications'."
+  },
+  {
+    "category": "Content & Impact",
+    "rule": "The X-Y-Z Action Formula for Bullet Points",
+    "importance": "High",
+    "guideline": "Strong bullet points state what you accomplished (X), measured by numeric metrics (Y), by doing specific actions/technologies (Z).",
+    "recommendation": "Transform 'Built a REST API' into 'Engineered a high-throughput FastAPI REST service reducing API response latency by 35% across 200,000 daily requests using Redis caching.'"
+  },
+  {
+    "category": "Action Verbs",
+    "rule": "Lead Every Bullet with Strong Active Verbs",
+    "importance": "Medium",
+    "guideline": "Replace passive verbs or vague duties like 'responsible for' or 'helped with' with definitive power action verbs.",
+    "recommendation": "Use verbs such as: Architected, Engineered, Implemented, Deployed, Automated, Accelerated, Spearheaded, Refactored, Optimized, Reduced."
+  },
+  {
+    "category": "Formatting & Design",
+    "rule": "Avoid Tables, Text Boxes, and Complex Multi-Column Layouts",
+    "importance": "High",
+    "guideline": "Many older and modern enterprise ATS parsers struggle to read text embedded inside multi-column tables, text boxes, or floating headers/footers.",
+    "recommendation": "Stick to a single-column or clean two-column hierarchy with clear standard margins (0.5 to 1 inch) and clear font sizing (10-12pt body, 14-16pt headings)."
+  },
+  {
+    "category": "Keyword Relevance",
+    "rule": "Tailor Technical Skills to the Target Job Description",
+    "importance": "High",
+    "guideline": "Recruiters and automated scanners match candidate resumes against exact keyword phrases found in job specifications.",
+    "recommendation": "Explicitly list relevant tools, languages, and frameworks in a dedicated 'Skills' section. Include both abbreviations and full names (e.g., 'AWS (Amazon Web Services)', 'CI/CD')."
+  },
+  {
+    "category": "Contact Information",
+    "rule": "Include Professional Digital Profiles",
+    "importance": "Medium",
+    "guideline": "Modern tech recruiters want to inspect code quality and professional credentials quickly.",
+    "recommendation": "Include professional email, active LinkedIn profile URL, and GitHub profile URL. Omit physical street addresses for privacy; city and country/state is sufficient."
+  }
+]

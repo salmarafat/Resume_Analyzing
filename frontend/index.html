@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Resume Analyzer & Career Advisor (RAG + AI Agents)</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/components.css">
+</head>
+<body>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- Sidebar Navigation -->
+  <aside class="app-sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">⚡</div>
+      <div class="sidebar-title">
+        <h1>AI Resume Analyzer</h1>
+        <p>RAG & Multi-Agent Platform</p>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-category">Main</div>
+      <button class="nav-link active" data-tab="dashboard-tab">
+        <span class="nav-icon">📊</span>
+        <span>Dashboard</span>
+      </button>
+      <button class="nav-link" data-tab="resume-tab">
+        <span class="nav-icon">📄</span>
+        <span>Resume Analyzer</span>
+      </button>
+
+      <div class="nav-category">Opportunities</div>
+      <button class="nav-link" data-tab="jobs-tab">
+        <span class="nav-icon">💼</span>
+        <span>Job Board</span>
+      </button>
+      <button class="nav-link" data-tab="recommendations-tab">
+        <span class="nav-icon">🎯</span>
+        <span>Job Matches</span>
+      </button>
+
+      <div class="nav-category">Career Intelligence</div>
+      <button class="nav-link" data-tab="improvements-tab">
+        <span class="nav-icon">🚀</span>
+        <span>Resume Improvement</span>
+      </button>
+      <button class="nav-link" data-tab="advisor-tab">
+        <span class="nav-icon">💬</span>
+        <span>Career Advisor Agent</span>
+      </button>
+      <button class="nav-link" data-tab="kb-tab">
+        <span class="nav-icon">📚</span>
+        <span>Knowledge Base</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div>FastAPI • SQLite • Vanilla JS</div>
+      <div style="font-size:0.75rem;margin-top:0.25rem;">AI Agents & RAG Architecture</div>
+    </div>
+  </aside>
+
+  <!-- App Main Content Area -->
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-left">
+        <h2 id="header-page-title" class="page-title">Overview & Intelligence Dashboard</h2>
+      </div>
+      <div class="header-right">
+        <div id="active-resume-badge" class="active-resume-badge" style="display:none;"></div>
+        <div id="header-user-section">
+          <!-- Populated dynamically by auth.js -->
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Views -->
+    <main class="app-main">
+
+      <!-- 1. DASHBOARD TAB -->
+      <section id="dashboard-tab" class="tab-pane active">
+        <!-- Hero Banner -->
+        <div class="card" style="background: linear-gradient(135deg, #1e1b4b, #312e81); color: #fff; padding: 2rem;">
+          <div style="max-width: 700px;">
+            <span class="badge" style="background: rgba(255,255,255,0.15); color: #fff; margin-bottom: 0.75rem;">
+              ⚡ Autonomous AI Agents & Retrieval-Augmented Generation
+            </span>
+            <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; color:#fff;">
+              Elevate Your Tech Career with AI Intelligence
+            </h2>
+            <p style="color: #c7d2fe; font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.5;">
+              Upload your resume in PDF or DOCX format to receive instant ATS evaluations, deep skill taxonomy extraction, 
+              custom job matching rankings, and personalized career roadmaps backed by our curated knowledge base.
+            </p>
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <button class="btn btn-primary" onclick="window.app.switchTab('resume-tab')">Upload Your Resume</button>
+              <button class="btn btn-secondary" onclick="window.app.switchTab('recommendations-tab')">View Job Matches</button>
+              <button class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.4);" onclick="window.app.switchTab('advisor-tab')">Ask Career Advisor</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon primary">💼</div>
+            <div class="stat-info">
+              <h3 id="dash-total-jobs">0</h3>
+              <p>Active Job Openings</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon accent">📄</div>
+            <div class="stat-info">
+              <h3 id="dash-total-resumes">0</h3>
+              <p>Uploaded Resumes</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon success">🎯</div>
+            <div class="stat-info">
+              <h3 id="dash-active-score">--</h3>
+              <p>Active ATS Readiness</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon warning">📚</div>
+            <div class="stat-info">
+              <h3>5</h3>
+              <p>RAG Knowledge Bases</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Demo Profiles & Architecture Info -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+          <div class="card">
+            <h3 class="card-title">🧪 Instant Sample Resumes (Demo)</h3>
+            <p class="card-subtitle">Test the AI extraction pipeline with pre-generated sample resumes.</p>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; background: #f8fafc; padding: 0.75rem 1rem; border-radius: var(--radius-md);">
+                <div>
+                  <strong>Jordan Miller</strong>
+                  <div style="font-size: 0.78rem; color: var(--text-muted);">Full Stack Software Engineer (Python, FastAPI, JS)</div>
+                </div>
+                <button id="btn-load-sample-se" class="btn btn-sm btn-outline">Load Sample</button>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; align-items: center; background: #f8fafc; padding: 0.75rem 1rem; border-radius: var(--radius-md);">
+                <div>
+                  <strong>Dr. Maya Patel</strong>
+                  <div style="font-size: 0.78rem; color: var(--text-muted);">Data Scientist (Machine Learning, PyTorch, SQL)</div>
+                </div>
+                <button id="btn-load-sample-ds" class="btn btn-sm btn-outline">Load Sample</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">🤖 AI Agent Architecture</h3>
+            <p class="card-subtitle">Specialized autonomous agents operating over RAG embeddings.</p>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem; font-size: 0.88rem;">
+              <div style="display: flex; align-items: flex-start; gap: 0.6rem;">
+                <span style="font-size: 1.2rem;">🔬</span>
+                <div>
+                  <strong>Resume Analyzer Agent:</strong> Extracts contact data, classifies skills, detects timelines, and computes ATS scores.
+                </div>
+              </div>
+              <div style="display: flex; align-items: flex-start; gap: 0.6rem;">
+                <span style="font-size: 1.2rem;">⚖️</span>
+                <div>
+                  <strong>Job Matching Agent:</strong> Evaluates skill matrices and computes TF-IDF semantic similarities against job listings.
+                </div>
+              </div>
+              <div style="display: flex; align-items: flex-start; gap: 0.6rem;">
+                <span style="font-size: 1.2rem;">🧭</span>
+                <div>
+                  <strong>Career Advisor Agent:</strong> Synthesizes RAG knowledge to formulate personalized roadmaps, certs, and answer queries.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. RESUME ANALYZER TAB -->
+      <section id="resume-tab" class="tab-pane">
+        <div style="display: grid; grid-template-columns: 350px 1fr; gap: 1.5rem;">
+          
+          <!-- Left Column: Upload & History -->
+          <div>
+            <!-- Upload Box -->
+            <div class="card">
+              <h3 class="card-title">Upload New Resume</h3>
+              <p class="card-subtitle">PDF (.pdf) or Word (.docx) files up to 10MB.</p>
+              
+              <div id="resume-drop-zone" class="upload-zone" style="margin-top: 1rem;">
+                <div id="drop-zone-content">
+                  <div class="upload-icon">📄</div>
+                  <h3>Drag & Drop Resume</h3>
+                  <p>or click to browse your computer</p>
+                  <span class="btn btn-sm btn-primary">Select File</span>
+                </div>
+                <div id="upload-spinner" style="display: none; padding: 2rem 0;">
+                  <div class="upload-icon" style="animation: spin 1s infinite linear;">⚙️</div>
+                  <p style="font-weight: 600;">Extracting & Analyzing...</p>
+                </div>
+              </div>
+              <input type="file" id="resume-file-input" class="file-input-hidden" accept=".pdf,.docx">
+            </div>
+
+            <!-- Uploaded Resumes List -->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Your Uploaded Resumes</h3>
+              </div>
+              <div id="uploaded-resumes-list">
+                <!-- Dynamically populated by resume.js -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Analysis Report View -->
+          <div>
+            <div id="analysis-report-view">
+              <!-- Header info card -->
+              <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
+                  <div>
+                    <h2 id="report-candidate-name" style="font-size: 1.4rem; font-weight: 800; color: var(--text-main);">
+                      Jordan Miller
+                    </h2>
+                    <div id="report-candidate-contact" style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">
+                      <!-- Contact details -->
+                    </div>
+                  </div>
+                  <div style="display: flex; gap: 0.5rem;">
+                    <button id="btn-reanalyze-resume" class="btn btn-sm btn-outline">🔄 Re-Analyze</button>
+                    <button class="btn btn-sm btn-primary" onclick="window.app.switchTab('recommendations-tab')">🎯 View Matches</button>
+                  </div>
+                </div>
+
+                <!-- ATS Score Box -->
+                <div id="ats-score-display" class="ats-score-box">
+                  <!-- Rendered dynamically -->
+                </div>
+              </div>
+
+              <!-- Executive Summary -->
+              <div class="card">
+                <h3 class="card-title">🤖 AI Executive Summary</h3>
+                <p id="report-summary-text" style="font-size: 0.92rem; color: #334155; line-height: 1.6; margin-top: 0.75rem;">
+                  <!-- Generated summary -->
+                </p>
+              </div>
+
+              <!-- Skills Grid -->
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                <div class="card">
+                  <h3 class="card-title">💻 Technical Skills Detected</h3>
+                  <div id="report-tech-skills" class="skill-chips">
+                    <!-- Populated dynamically -->
+                  </div>
+                </div>
+
+                <div class="card">
+                  <h3 class="card-title">🤝 Interpersonal & Soft Skills</h3>
+                  <div id="report-soft-skills" class="skill-chips">
+                    <!-- Populated dynamically -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- Experience & Education -->
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+                <div class="card">
+                  <h3 class="card-title">💼 Work Experience History</h3>
+                  <div id="report-experience-list" style="margin-top: 1rem;">
+                    <!-- Populated dynamically -->
+                  </div>
+                </div>
+
+                <div class="card">
+                  <h3 class="card-title">🎓 Education History</h3>
+                  <div id="report-education-list" style="margin-top: 1rem;">
+                    <!-- Populated dynamically -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- Actionable Tips -->
+              <div class="card">
+                <h3 class="card-title">⚡ ATS Guidelines & Critical Enhancements</h3>
+                <ul id="report-tips-list" style="list-style: none; margin-top: 0.75rem; padding: 0;">
+                  <!-- Populated dynamically -->
+                </ul>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 3. JOB BOARD TAB -->
+      <section id="jobs-tab" class="tab-pane">
+        <!-- Search and Action Bar -->
+        <div class="card" style="padding: 1.25rem 1.5rem;">
+          <form id="jobs-search-form" style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr auto auto; gap: 0.75rem; align-items: end;">
+            <div>
+              <label class="form-label">Search Keywords</label>
+              <input type="text" id="job-search-keyword" class="form-control" placeholder="Title, company, or keywords...">
+            </div>
+            <div>
+              <label class="form-label">Location</label>
+              <input type="text" id="job-filter-location" class="form-control" placeholder="Remote, Hybrid, City...">
+            </div>
+            <div>
+              <label class="form-label">Department</label>
+              <select id="job-filter-dept" class="form-control">
+                <option value="">All Departments</option>
+                <option value="Engineering">Engineering</option>
+                <option value="Data & Analytics">Data & Analytics</option>
+                <option value="AI & Innovation">AI & Innovation</option>
+                <option value="Infrastructure">Infrastructure</option>
+              </select>
+            </div>
+            <div>
+              <label class="form-label">Experience Level</label>
+              <select id="job-filter-exp" class="form-control">
+                <option value="">All Levels</option>
+                <option value="Entry">Entry Level</option>
+                <option value="Mid">Mid Level</option>
+                <option value="Senior">Senior Level</option>
+                <option value="Lead">Lead / Architect</option>
+              </select>
+            </div>
+            <div>
+              <button type="submit" class="btn btn-primary" style="width: 100%;">Filter</button>
+            </div>
+            <div>
+              <button type="button" id="btn-reset-filters" class="btn btn-secondary">Reset</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Job Board Header -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+          <div>
+            <h3 style="font-size: 1.2rem; font-weight: 700;">
+              Available Job Positions (<span id="total-jobs-count">0</span>)
+            </h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Manage, post, and explore opportunities evaluated by the Job Matching Agent.
+            </p>
+          </div>
+          <button id="btn-open-add-job" class="btn btn-primary">+ Post New Job</button>
+        </div>
+
+        <!-- Jobs Grid -->
+        <div id="jobs-grid-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 1.5rem;">
+          <!-- Dynamically populated by jobs.js -->
+        </div>
+      </section>
+
+      <!-- 4. JOB RECOMMENDATIONS TAB -->
+      <section id="recommendations-tab" class="tab-pane">
+        <div id="recommendations-list">
+          <!-- Populated dynamically by recommendations.js -->
+        </div>
+      </section>
+
+      <!-- 5. RESUME IMPROVEMENT TAB -->
+      <section id="improvements-tab" class="tab-pane">
+        <div style="margin-bottom: 1.5rem;">
+          <h2 style="font-size: 1.3rem; font-weight: 700;">Resume Improvement & Career Growth Roadmaps</h2>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">
+            FR-5: Analysis of profile weaknesses, missing competencies, verified certifications, and curated learning roadmaps.
+          </p>
+        </div>
+        <div id="improvements-content">
+          <!-- Populated dynamically by advisor.js -->
+        </div>
+      </section>
+
+      <!-- 6. AI CAREER ADVISOR CHAT TAB -->
+      <section id="advisor-tab" class="tab-pane">
+        <div class="card" style="margin-bottom: 1.5rem; background: linear-gradient(135deg, #f8fafc, #f1f5f9);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <h2 style="font-size: 1.25rem; font-weight: 700; color: var(--text-main);">
+                🤖 AI Career Advisor Agent (RAG-Augmented)
+              </h2>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">
+                Ask technical career questions, seek advice on interview prep, transition roadmaps, or resume bullet rewriting.
+                Answers are grounded directly in our Knowledge Base!
+              </p>
+            </div>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <button class="btn btn-sm btn-secondary quick-prompt-btn">🎓 Best certifications for backend?</button>
+              <button class="btn btn-sm btn-secondary quick-prompt-btn">🗺️ Roadmap from Mid to Senior?</button>
+              <button class="btn btn-sm btn-secondary quick-prompt-btn">✍️ How to write X-Y-Z bullet points?</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-container">
+          <div id="chat-messages-box" class="chat-messages">
+            <div class="message-bubble assistant">
+              Hello! I am your <strong>AI Career Advisor Agent</strong>. I have indexed industry career roadmaps, skill benchmarks, resume guidelines, and learning resources. How can I help advance your career today?
+            </div>
+          </div>
+
+          <form id="chat-form" class="chat-input-bar">
+            <input type="text" id="chat-user-input" placeholder="Type your career or resume question..." required>
+            <button type="submit" id="chat-send-btn" class="btn btn-primary">Send Query ↗</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- 7. KNOWLEDGE BASE TAB -->
+      <section id="kb-tab" class="tab-pane">
+        <div class="card">
+          <h2 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 0.25rem;">
+            📚 RAG Knowledge Base Explorer
+          </h2>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+            Explore the underlying knowledge collections powering the AI Resume Analyzer: Job Descriptions, Skill Descriptions, Career Roadmaps, Learning Resources, and Resume Writing Guidelines.
+          </p>
+
+          <form id="kb-search-form" style="display: flex; gap: 0.75rem; margin-bottom: 1.5rem;">
+            <input type="text" id="kb-query-input" class="form-control" placeholder="Search knowledge base (e.g. Docker, RAG, ATS guidelines, Senior milestones)..." required>
+            <select id="kb-category-select" class="form-control" style="max-width: 200px;">
+              <option value="">All Collections</option>
+              <option value="jobs">Job Descriptions</option>
+              <option value="skills">Skill Descriptions</option>
+              <option value="roadmaps">Career Roadmaps</option>
+              <option value="resources">Learning Resources</option>
+              <option value="guidelines">Resume Guidelines</option>
+            </select>
+            <button type="submit" class="btn btn-primary" style="white-space: nowrap;">Search KB</button>
+          </form>
+
+          <div id="kb-results-list">
+            <p style="color: var(--text-muted); font-size: 0.9rem;">
+              Enter a search term above to inspect semantic knowledge chunks and their relevance scores.
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- AUTH MODAL -->
+  <div id="auth-modal" class="modal-overlay">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 id="auth-modal-title" class="modal-title">Sign In</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Login Form -->
+        <div id="modal-login-section">
+          <form id="login-form">
+            <div class="form-group">
+              <label class="form-label">Email or Username</label>
+              <input type="text" id="login-identifier" class="form-control" required placeholder="demo@resume.ai">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Password</label>
+              <input type="password" id="login-password" class="form-control" required placeholder="••••••••">
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">Sign In</button>
+          </form>
+          
+          <div style="margin-top: 1.25rem; text-align: center; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+            <button id="btn-demo-login" class="btn btn-outline" style="width: 100%; margin-bottom: 0.75rem;">
+              ⚡ Quick Demo Login (demo@resume.ai)
+            </button>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Don't have an account? <a href="#" onclick="auth.openModal('register')" style="color: var(--primary); font-weight: 600;">Sign up here</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- Register Form -->
+        <div id="modal-register-section" style="display: none;">
+          <form id="register-form">
+            <div class="form-group">
+              <label class="form-label">Full Name</label>
+              <input type="text" id="reg-name" class="form-control" required placeholder="Jane Doe">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Username</label>
+              <input type="text" id="reg-username" class="form-control" required placeholder="janedoe">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <input type="email" id="reg-email" class="form-control" required placeholder="jane@example.com">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Password</label>
+              <input type="password" id="reg-password" class="form-control" required minlength="6" placeholder="At least 6 characters">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Account Role</label>
+              <select id="reg-role" class="form-control">
+                <option value="job_seeker">Job Seeker</option>
+                <option value="recruiter">Recruiter / Employer</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">Create Account</button>
+          </form>
+          <div style="margin-top: 1rem; text-align: center;">
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Already have an account? <a href="#" onclick="auth.openModal('login')" style="color: var(--primary); font-weight: 600;">Log in</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JOB DETAILS MODAL -->
+  <div id="job-details-modal" class="modal-overlay">
+    <div class="modal-container" style="max-width: 700px;">
+      <div class="modal-header">
+        <div>
+          <h3 id="view-job-title" class="modal-title">Job Title</h3>
+          <div id="view-job-company" style="font-size: 0.85rem; color: var(--text-muted);">Company</div>
+        </div>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="view-job-details-meta" style="display: flex; gap: 0.75rem; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap;"></div>
+        
+        <div style="margin-bottom: 1.25rem;">
+          <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem;">Description & Responsibilities</h4>
+          <div id="view-job-description" style="font-size: 0.9rem; color: #334155; line-height: 1.6;"></div>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem;">Required Skills</h4>
+          <div id="view-job-req-skills" class="skill-chips"></div>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem;">Preferred Skills</h4>
+          <div id="view-job-pref-skills" class="skill-chips"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary modal-close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JOB ADD/EDIT MODAL -->
+  <div id="job-edit-modal" class="modal-overlay">
+    <div class="modal-container" style="max-width: 650px;">
+      <div class="modal-header">
+        <h3 id="job-modal-title" class="modal-title">Post a New Job Opportunity</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="job-form">
+          <input type="hidden" id="job-form-id">
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label">Job Title *</label>
+              <input type="text" id="job-input-title" class="form-control" required placeholder="e.g. Senior Backend Engineer">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Company Name *</label>
+              <input type="text" id="job-input-company" class="form-control" required placeholder="e.g. TechCorp Solutions">
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label">Location *</label>
+              <input type="text" id="job-input-location" class="form-control" required placeholder="e.g. San Francisco, CA (Remote)">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Employment Type</label>
+              <select id="job-input-type" class="form-control">
+                <option value="Full-time">Full-time</option>
+                <option value="Part-time">Part-time</option>
+                <option value="Contract">Contract</option>
+                <option value="Remote">Remote</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label">Experience Level</label>
+              <select id="job-input-level" class="form-control">
+                <option value="Entry">Entry Level</option>
+                <option value="Mid">Mid Level</option>
+                <option value="Senior">Senior Level</option>
+                <option value="Lead">Lead / Staff</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Department</label>
+              <input type="text" id="job-input-dept" class="form-control" required value="Engineering">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Salary Range</label>
+              <input type="text" id="job-input-salary" class="form-control" placeholder="$120k - $160k">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Job Description & Responsibilities *</label>
+            <textarea id="job-input-desc" class="form-control" required placeholder="Detail the core duties, goals, and expectations for this role..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Required Skills (comma-separated) *</label>
+            <input type="text" id="job-input-req-skills" class="form-control" required placeholder="Python, FastAPI, Docker, SQL">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Preferred Skills (comma-separated)</label>
+            <input type="text" id="job-input-pref-skills" class="form-control" placeholder="Kubernetes, Redis, AWS, CI/CD">
+          </div>
+
+          <div class="modal-footer" style="padding: 1rem 0 0; margin-top: 1rem;">
+            <button type="button" class="btn btn-secondary modal-close">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Job Posting</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts: pure Vanilla JavaScript (No React, Angular, Vue) -->
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/resume.js"></script>
+  <script src="/js/jobs.js"></script>
+  <script src="/js/recommendations.js"></script>
+  <script src="/js/advisor.js"></script>
+  <script src="/js/app.js"></script>
+
+</body>
+</html>

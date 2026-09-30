@@ -1,0 +1,77 @@
+[
+  {
+    "track": "Full Stack & Backend Engineering",
+    "target_roles": ["Junior Backend Engineer", "Full Stack Developer", "Senior Backend Engineer", "Staff Software Architect"],
+    "milestones": [
+      {
+        "level": "Entry / Junior (0-2 years)",
+        "focus": "Core language fluency, basic REST APIs, and database fundamentals.",
+        "key_skills": ["Python", "FastAPI or Flask", "SQL Basics", "Git", "HTML/CSS/JS"],
+        "recommended_projects": ["CRUD REST API with SQLite/Postgres", "Authentication system with JWT", "Responsive web dashboard"]
+      },
+      {
+        "level": "Mid-Level (2-5 years)",
+        "focus": "Scalability, asynchronous programming, clean architecture, automated testing, and containerization.",
+        "key_skills": ["Docker", "Redis Caching", "Asyncio / Async Web Frameworks", "Unit & Integration Testing (Pytest)", "CI/CD Pipelines", "ORM / SQL Query Optimization"],
+        "recommended_projects": ["Microservice architecture with message broker", "High-throughput API with rate limiting and caching"]
+      },
+      {
+        "level": "Senior / Lead (5+ years)",
+        "focus": "System design, distributed systems, security, observability, cross-team mentoring, and architectural governance.",
+        "key_skills": ["Distributed Systems", "Kubernetes", "System Design", "Cloud Infrastructure (AWS/GCP)", "Security & Compliance", "Mentorship"],
+        "recommended_projects": ["Multi-region distributed system", "Enterprise observability & disaster recovery pipeline"]
+      }
+    ],
+    "transition_advice": "To advance from Junior to Mid, transition from simple scripts to production-ready architectures with comprehensive unit tests, Docker packaging, and automated CI/CD. To reach Senior, lead system design initiatives, reduce technical debt, and mentor junior developers."
+  },
+  {
+    "track": "AI & Data Science",
+    "target_roles": ["Data Analyst", "Data Scientist", "Machine Learning Engineer", "AI Research Scientist"],
+    "milestones": [
+      {
+        "level": "Entry / Junior (0-2 years)",
+        "focus": "Data cleaning, exploratory data analysis, statistical methods, and foundational ML algorithms.",
+        "key_skills": ["Python", "Pandas", "NumPy", "Scikit-Learn", "SQL", "Matplotlib / Seaborn", "Statistics"],
+        "recommended_projects": ["Exploratory Data Analysis dashboard", "Predictive churn model with cross-validation"]
+      },
+      {
+        "level": "Mid-Level (2-5 years)",
+        "focus": "Deep learning, NLP, production model deployment, feature stores, and RAG architectures.",
+        "key_skills": ["PyTorch or TensorFlow", "Transformers & HuggingFace", "FastAPI for Inference", "Vector Databases (Qdrant/Pinecone)", "RAG Systems", "MLflow"],
+        "recommended_projects": ["End-to-end RAG knowledge assistant with document search", "Fine-tuned LLM classifier deployed on cloud"]
+      },
+      {
+        "level": "Senior / Staff (5+ years)",
+        "focus": "Autonomous multi-agent systems, large-scale model pre-training, distributed training, and AI ethics/safety.",
+        "key_skills": ["LLM Agent Orchestration", "Distributed Training (DeepSpeed/FSDP)", "AI Governance & Guardrails", "MLOps Infrastructure"],
+        "recommended_projects": ["Enterprise agentic workflow platform with self-correcting RAG loops"]
+      }
+    ],
+    "transition_advice": "Strengthen both mathematical modeling and software engineering fundamentals. Real-world AI applications require robust engineering (APIs, Docker, async processing) alongside model experimentation."
+  },
+  {
+    "track": "DevOps & Cloud Engineering",
+    "target_roles": ["Junior Cloud Admin", "DevOps Engineer", "Site Reliability Engineer (SRE)", "Cloud Solutions Architect"],
+    "milestones": [
+      {
+        "level": "Entry / Junior (0-2 years)",
+        "focus": "Linux administration, shell scripting, networking basics, and version control.",
+        "key_skills": ["Linux / Bash", "Git", "Basic Docker", "Networking (DNS, TCP/IP, HTTP/S)", "Python Automation"],
+        "recommended_projects": ["Automated server setup script", "Dockerized multi-container app with docker-compose"]
+      },
+      {
+        "level": "Mid-Level (2-5 years)",
+        "focus": "Infrastructure as Code, Kubernetes orchestration, CI/CD automation, and cloud providers.",
+        "key_skills": ["Terraform", "Kubernetes (K8s)", "AWS / GCP Core Services", "GitHub Actions / GitLab CI", "Prometheus & Grafana"],
+        "recommended_projects": ["Production Kubernetes cluster deployed via Terraform", "Automated zero-downtime CI/CD deployment pipeline"]
+      },
+      {
+        "level": "Senior / Lead (5+ years)",
+        "focus": "Reliability engineering (SLOs/SLAs), chaos engineering, multi-cloud strategy, cost optimization, and security governance.",
+        "key_skills": ["Site Reliability Engineering", "Chaos Engineering", "Zero-Trust Cloud Security", "FinOps / Cost Optimization"],
+        "recommended_projects": ["Enterprise multi-account landing zone with automated compliance guards"]
+      }
+    ],
+    "transition_advice": "Prioritize Infrastructure as Code (Terraform) and Kubernetes proficiency. Hands-on experience with cloud certifications (AWS Solutions Architect, CKA) provides immense industry credibility."
+  }
+]
